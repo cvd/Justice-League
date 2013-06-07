@@ -64,6 +64,10 @@ module
         $scope.new_member_abilities.push( $scope.new_member_ability );
         $scope.new_member_ability = ""
       }
+    };
+
+    $scope.listAbilities = function(hero) {
+      return hero.abilities.join( "," );
     }
 
     $scope.saveHero = Utils.saveHero.bind( Utils );

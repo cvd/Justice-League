@@ -7,14 +7,22 @@
   <%= stylesheet_link_tag "styles" %>
 </head>
 <body ng-controller="LeagueCtrl" ng-cloak>
-
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <h1>The Justice League Roster</h1>
+    </div>
+  </div>
   <div class="row-fluid spacer-row"></div>
 
   <div class="row-fluid">
     <div class="span6 offset3">
-      <h1 class="muted" ng-show="noMembers()">Yikes! No heroes - we're doomed!</h1>
+      <h1 class="muted" ng-show="noMembers()">No heroes! Someone call Iron Man!</h1>
       <ul class="members-list">
-        <li ng-repeat="m in members" ng-click="removeHero(m.url)" class="muted">{{ m.name }}</li>
+        <li ng-repeat="m in members" ng-click="removeHero(m.url)" class="muted">{{ m.name }}
+          <br/><br/>
+          <span class="hero-meta"><strong>Secret Identity:</strong> {{m.secret_identity}}</span>
+          <span class="hero-meta"><strong>Known Abilities:</strong> {{ listAbilities(m) }}</span>
+        </li>
       </ul>
     </div>
   </div>
@@ -22,7 +30,7 @@
   <div class="row-fluid spacer-row"></div>
 
   <div class="row-fluid">
-    <div class="span6 offset3">
+    <div class="span3 offset3">
       <form ng-submit="saveHero()">
         <legend>Add New Member</legend>
         <input class="member-name" type="text" placeholder="Hero Name" ng-model="new_member_name" />
@@ -43,8 +51,11 @@
           </li>         
         </ul>
 
-        <input type="submit" id="submit" value="Submit" />
-      </form>
+        <button class="btn btn-success" type="submit" id="submit" value="Submit">Go!</button>
+      </form>      
+    </div>
+    <div class="span6">
+      <img src="http://25.media.tumblr.com/tumblr_m6gqx1ZSyo1r2qbw5o9_r1_500.gif" />
     </div>
   </div>
 
