@@ -1,6 +1,53 @@
-<h1>HEY FILL ME UP WITH HEROES!!</h1>
 
-<script>
-  // if you want to initialize the page with some data...
-  heroes = <%= @heroes.to_json.html_safe %>
-</script>
+<!DOCTYPE html>
+<html lang="en" ng-app="JusticeLeague">
+<head>
+  <meta charset="utf-8"/>
+  <%= stylesheet_link_tag "bootstrap.min" %>
+  <%= stylesheet_link_tag "styles" %>
+</head>
+<body ng-controller="LeagueCtrl" ng-cloak>
+
+  <div class="row-fluid spacer-row"></div>
+
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <h1 class="muted" ng-show="noMembers()">Yikes! No heroes - we're doomed!</h1>
+      <ul class="members-list">
+        <li ng-repeat="m in members">{{ m.name }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row-fluid spacer-row"></div>
+
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <form>
+        <legend>Add New Member</legend>
+        <input class="member-name" type="text" placeholder="New Hero Name" ng-model="new_member_name" />
+        <br/>
+
+        <div class="input-append">
+          <input type="text" placeholder="Ability" ng-model="new_member_ability" />
+          <span class="add-on" ng-click="addAbility()">Add</span>
+        </div>
+        <br/>
+
+        <ul id="member-abilities">
+          <li class="muted" ng-repeat="a in abilities">
+            <span>{{a}}</span>
+            <i class="icon-remove" ng-click="removeAbility(a)"></i>
+          </li>         
+        </ul>
+
+        <button>Add Hero</button>
+      </form>
+    </div>
+  </div>
+
+<%= javascript_include_tag "bootstrap" %>
+<%= javascript_include_tag "angularjs-1.0.7.min" %>
+<%= javascript_include_tag "app" %>
+</body>
+</html>
