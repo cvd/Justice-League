@@ -14,7 +14,7 @@
     <div class="span6 offset3">
       <h1 class="muted" ng-show="noMembers()">Yikes! No heroes - we're doomed!</h1>
       <ul class="members-list">
-        <li ng-repeat="m in members">{{ m.name }}</li>
+        <li ng-repeat="m in members" class="muted">{{ m.name }}</li>
       </ul>
     </div>
   </div>
@@ -23,10 +23,13 @@
 
   <div class="row-fluid">
     <div class="span6 offset3">
-      <form>
+      <form ng-submit="saveHero()">
         <legend>Add New Member</legend>
-        <input class="member-name" type="text" placeholder="New Hero Name" ng-model="new_member_name" />
+        <input class="member-name" type="text" placeholder="Hero Name" ng-model="new_member_name" />
         <br/>
+
+        <input class="member-name" type="text" placeholder="Secret Identity" ng-model="new_member_secret_identity" />
+        <br/>        
 
         <div class="input-append">
           <input type="text" placeholder="Ability" ng-model="new_member_ability" />
@@ -35,13 +38,12 @@
         <br/>
 
         <ul id="member-abilities">
-          <li class="muted" ng-repeat="a in abilities">
-            <span>{{a}}</span>
-            <i class="icon-remove" ng-click="removeAbility(a)"></i>
+          <li class="muted" ng-repeat="a in new_member_abilities" ng-click="removeAbility(a)">
+            {{a}}
           </li>         
         </ul>
 
-        <button>Add Hero</button>
+        <input type="submit" id="submit" value="Submit" />
       </form>
     </div>
   </div>

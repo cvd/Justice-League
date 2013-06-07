@@ -23,17 +23,16 @@ h1 {
   cursor:pointer;
 }
 
-/*form input[type=text] {
-  display:block;
-}*/
 
-.members-list li:hover {
+.members-list li:hover, #member-abilities li:hover {
   background:#C2FFFF;
+  color:black;
 }
 
 #member-abilities li {
   display:inline;
   padding:5px;
+  cursor:pointer;
 }
 
 .member-name {
