@@ -14,7 +14,7 @@
     <div class="span6 offset3">
       <h1 class="muted" ng-show="noMembers()">Yikes! No heroes - we're doomed!</h1>
       <ul class="members-list">
-        <li ng-repeat="m in members" class="muted">{{ m.name }}</li>
+        <li ng-repeat="m in members" ng-click="removeHero(m.url)" class="muted">{{ m.name }}</li>
       </ul>
     </div>
   </div>

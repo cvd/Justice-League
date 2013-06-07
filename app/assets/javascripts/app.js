@@ -28,9 +28,29 @@ module
       return $scope.members.length === 0;
     };
 
-    $scope.removeHero = function(id) {
+    $scope.removeHero = function(url) {
+      $http({
+        method: "DELETE",
+        url: url
+      })
 
+      .error( function(){ console.error("error"); console.error(arguments) })
+
+      .success(function(){
+        deleteHero( url );
+      })
     };
+
+    function deleteHero(url) {
+      var index = -1;
+      for (i = 0; i < $scope.members.length; i++) {
+        if ( $scope.members[ i ].url === url ) {
+          index = i;
+          break;
+        }
+      }
+      $scope.members.splice( i, 1 );
+    }
 
     $scope.removeAbility = function(ability) {
       var index = $scope.new_member_abilities.indexOf( ability );
@@ -49,13 +69,21 @@ module
     $scope.saveHero = Utils.saveHero.bind( Utils );
 
     $scope.addMember = function(hero) {
-      console.log(arguments)
+      $scope.members.push( hero );
+      console.log(hero)
+      $scope.clearNewMemberForm();
     }
+
+    $scope.clearNewMemberForm = function() {
+      $scope.new_member_abilities = [];
+      $scope.new_member_name = "";
+      $scope.new_member_ability = "";    
+      $scope.new_member_secret_identity = "";  
+    };
 
     $scope.onHeroes = function(heroes) {
       $scope.members = heroes;
-      console.log(heroes)
-    }
+    };
 
     Utils.getMembers();
   
